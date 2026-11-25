@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jain CA Accounting & Book-Keeping | Bijoliya</title>
+    <!-- Google Fonts: Outfit & Noto Sans Devanagari for crisp Hindi + English rendering -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- GLOBAL & THEME (Fixed universal selector '*' bug) --- */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Outfit', 'Noto Sans Devanagari', sans-serif; 
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body { 
+            background-color: #ffffff; 
+            color: #1e293b; 
+            line-height: 1.6; 
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        button { font-family: inherit; cursor: pointer; border: none; outline: none; }
+        
+        :root { 
+            --header-blue: #1e3a8a; 
+            --header-blue-light: #2563eb;
+            --gold: #f59e0b; 
+            --pink: #ec4899;
+            --green: #25D366;
+            --white: #ffffff;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --card-bg: #f8fafc;
+            --card-border: #e2e8f0;
+            --box-highlight: #fffbeb;
+            --box-highlight-blue: #eff6ff;
+        }
+
+        /* --- TEXT HIGHLIGHT STYLES --- */
+        .highlight-yellow {
+            background: linear-gradient(120deg, #fef08a 0%, #fef08a 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 42%;
+            background-position: 0 85%;
+            padding: 0 4px;
+            font-weight: 800;
+            color: var(--header-blue);
+        }
+        /* Contrast fix for dark blue header & footer backgrounds */
+        header .highlight-yellow,
+        footer .highlight-yellow {
+            background: rgba(251, 191, 36, 0.22);
+            color: #fde047;
+            border-radius: 4px;
+            padding: 1px 5px;
+        }
+        .highlight-pink {
+            background: linear-gradient(120deg, #fbcfe8 0%, #fbcfe8 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 42%;
+            background-position: 0 85%;
+            padding: 0 4px;
+            font-weight: 800;
+            color: #9d174d;
+        }
+        .highlight-gold {
+            background: linear-gradient(120deg, #fde68a 0%, #fde68a 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 42%;
+            background-position: 0 85%;
+            padding: 0 4px;
+            font-weight: 800;
+            color: #92400e;
+        }
+        .highlight-blue {
+            background: linear-gradient(120deg, #bfdbfe 0%, #bfdbfe 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 42%;
+            background-position: 0 85%;
+            padding: 0 4px;
+            font-weight: 800;
+            color: #1e40af;
+        }
+
+        /* --- SCROLL ANIMATION --- */
+        .fade-up { opacity: 0; transform: translateY(25px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* --- HEADER (Blue Sticky) --- */
+        header { 
+            position: sticky; top: 0; z-index: 900; 
+            background: linear-gradient(135deg, var(--header-blue), var(--header-blue-light)); 
+            padding: 12px 18px; 
+            display: flex; justify-content: space-between; align-items: center; 
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.22);
+        }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo-icon { 
+            width: 44px; height: 44px; 
+            background: linear-gradient(145deg, #fbbf24, #f59e0b); 
+            border: 2px solid #fef08a;
+            border-radius: 11px; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            color: var(--header-blue);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.45);
+            flex-shrink: 0;
+            position: relative;
+        }
+        .logo-icon-ca {
+            font-size: 17px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            line-height: 1;
+            color: var(--header-blue);
+        }
+        .logo-icon-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 7px;
+            margin-top: 2px;
+        }
+        .logo-icon-bars span {
+            width: 3px;
+            background: var(--header-blue);
+            border-radius: 1px;
+        }
+        .logo-text h2 { font-size: 16px; font-weight: 800; color: #fff; letter-spacing: 0.5px; line-height: 1.2; }
+        .logo-text span { font-size: 10px; color: #fde68a; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; display: block; margin-top: 2px; }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .header-call { 
+            background: var(--gold); 
+            color: var(--header-blue); padding: 9px 16px; border-radius: 50px; 
+            font-weight: 800; font-size: 13px; 
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+            display: flex; align-items: center; gap: 6px;
+            white-space: nowrap;
+            transition: transform 0.2s;
+        }
+        .header-call:hover { transform: scale(1.04); }
+
+        /* --- HERO SECTION --- */
+        .hero { 
+            padding: 45px 20px 50px; 
+            text-align: center; 
+            position: relative;
+            background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
+        }
+        .hero-badge {
+            display: inline-block; 
+            background: #fef3c7; border: 1px solid #fcd34d;
+            padding: 6px 16px; border-radius: 50px; font-size: 12px; 
+            color: #92400e; font-weight: 700; margin-bottom: 18px;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.12);
+        }
+        .hero h1 { 
+            font-size: 30px; font-weight: 800; line-height: 1.25; margin-bottom: 14px; 
+            color: var(--header-blue);
+        }
+        .hero p { font-size: 14px; color: var(--text-light); margin-bottom: 28px; max-width: 92%; margin-left: auto; margin-right: auto; }
+        
+        .hero-btns { display: flex; flex-direction: column; gap: 12px; max-width: 360px; margin: 0 auto; }
+        .btn { 
+            padding: 14px 20px; border-radius: 12px; font-weight: 700; font-size: 15px; 
+            text-align: center; transition: 0.25s; display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .btn-call { background: var(--gold); color: var(--header-blue); box-shadow: 0 4px 20px rgba(245, 158, 11, 0.32); }
+        .btn-call:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(245, 158, 11, 0.45); }
+        .btn-wa { background: var(--green); color: white; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.32); }
+        .btn-wa:hover { background: #1ebe5d; transform: translateY(-2px); }
+
+        /* --- STATS BAR --- */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: var(--white); border: 1px solid var(--card-border);
+            border-radius: 16px; padding: 18px 10px; 
+            margin: -25px 16px 35px; position: relative; z-index: 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+            gap: 6px;
+        }
+        .stat-item { text-align: center; border-right: 1px solid #f1f5f9; }
+        .stat-item:last-child { border-right: none; }
+        .stat-item h3 { font-size: 20px; color: var(--header-blue); font-weight: 800; line-height: 1.2; }
+        .stat-item p { font-size: 10px; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.4px; font-weight: 600; margin-top: 2px; }
+
+        /* --- SECTION TITLES --- */
+        .section-header { text-align: center; margin: 40px 0 22px; padding: 0 15px; }
+        .section-header h2 { font-size: 24px; font-weight: 800; color: var(--header-blue); }
+        .section-header p { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+        .section-header .line { width: 55px; height: 3.5px; background: linear-gradient(to right, var(--gold), var(--pink)); margin: 10px auto 0; border-radius: 5px; }
+
+        /* --- SERVICES GRID (Always 3 columns as requested) --- */
+        .services-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px; 
+            padding: 0 15px; 
+            margin-bottom: 45px; 
+        }
+        .service-card { 
+            background: var(--box-highlight);
+            border: 1px solid #fde68a; 
+            border-radius: 16px; padding: 14px 8px; text-align: center; 
+            transition: all 0.25s ease; position: relative; overflow: hidden;
+            display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+            min-height: 140px;
+            box-shadow: 0 3px 10px rgba(245, 158, 11, 0.08);
+            cursor: pointer;
+        }
+        .service-card:hover, .service-card:active { 
+            transform: translateY(-4px); 
+            border-color: var(--gold); 
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.22);
+            background: #fef3c7;
+        }
+        .service-icon { 
+            font-size: 24px; margin-bottom: 6px; 
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 44px; height: 44px; border-radius: 12px;
+            background: rgba(245, 158, 11, 0.18);
+        }
+        .service-card h3 { 
+            font-size: 11px; color: var(--text-dark); font-weight: 700; line-height: 1.35; 
+            display: flex; align-items: center; justify-content: center;
+            flex: 1;
+            text-align: center;
+        }
+        .service-tap-hint {
+            font-size: 9px;
+            color: #b45309;
+            font-weight: 700;
+            margin-top: 6px;
+            background: rgba(255,255,255,0.7);
+            padding: 2px 7px;
+            border-radius: 20px;
+        }
+
+        /* --- BLOG SECTION (Always 2 columns as requested) --- */
+        .blog-container { 
+            padding: 0 15px; 
+            margin-bottom: 50px; 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+        .blog-card { 
+            background: var(--box-highlight-blue);
+            border: 1px solid #bfdbfe; 
+            border-radius: 16px; padding: 12px; 
+            display: flex; flex-direction: column; gap: 10px; 
+            transition: all 0.25s ease;
+            box-shadow: 0 3px 10px rgba(37, 99, 235, 0.06);
+            min-height: 195px;
+            cursor: pointer;
+            text-align: left;
+        }
+        .blog-card:hover, .blog-card:active { 
+            transform: translateY(-4px);
+            border-color: var(--header-blue-light); 
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.16);
+            background: #dbeafe;
+        }
+        .blog-img { 
+            width: 100%; height: 60px; border-radius: 10px; flex-shrink: 0; 
+            background: rgba(37, 99, 235, 0.12);
+            display: flex; align-items: center; justify-content: center; 
+            font-size: 24px; border: 1px solid rgba(37, 99, 235, 0.2);
+        }
+        .blog-content { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .blog-tag { 
+            font-size: 8.5px; background: #fce7f3; color: #be185d; 
+            padding: 2px 7px; border-radius: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px;
+            display: inline-block;
+            width: fit-content;
+        }
+        .blog-content h4 { font-size: 12px; color: var(--text-dark); margin: 5px 0; font-weight: 700; line-height: 1.35; }
+        .blog-content p { font-size: 10px; color: var(--text-light); margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .read-more { font-size: 11px; color: var(--header-blue-light); font-weight: 800; display: flex; align-items: center; gap: 4px; }
+
+        /* --- QUICK CONSULTATION / INQUIRY FORM --- */
+        .inquiry-section {
+            padding: 0 15px;
+            margin-bottom: 50px;
+        }
+        .inquiry-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border: 1.5px solid #cbd5e1;
+            border-radius: 20px;
+            padding: 24px 20px;
+            max-width: 750px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.08);
+        }
+        .inquiry-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+            margin-top: 18px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--header-blue);
+            margin-bottom: 5px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 14px;
+            color: var(--text-dark);
+            background: #ffffff;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--header-blue-light);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+        .btn-submit-wa {
+            width: 100%;
+            background: linear-gradient(135deg, #16a34a, #25D366);
+            color: #ffffff;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 6px;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+            transition: transform 0.2s;
+        }
+        .btn-submit-wa:hover {
+            transform: translateY(-2px);
+        }
+
+        /* --- SOCIAL LINKS (Crisp SVGs) --- */
+        .social-section {
+            text-align: center; padding: 32px 20px; 
+            background: #f8fafc; border-top: 1px solid var(--card-border);
+            border-bottom: 1px solid var(--card-border);
+        }
+        .social-section h3 { font-size: 18px; color: var(--header-blue); margin-bottom: 6px; font-weight: 800; }
+        .social-section p { font-size: 12px; color: var(--text-light); margin-bottom: 18px; }
+        .social-links { 
+            display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+        }
+        .social-links a { 
+            width: 48px; height: 48px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            color: white; transition: 0.25s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .social-links a:hover { transform: translateY(-3px) scale(1.08); }
+        .fb { background: #1877F2; }
+        .wa { background: var(--green); }
+        .insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .yt { background: #FF0000; }
+        .linkedin { background: #0A66C2; }
+
+        /* --- FOOTER --- */
+        footer { 
+            background: var(--header-blue); padding: 35px 20px 85px; text-align: center; 
+            color: #e2e8f0;
+        }
+        footer h3 { color: #fff; font-size: 18px; margin-bottom: 8px; font-weight: 800; }
+        footer p { font-size: 13px; margin-bottom: 6px; }
+        .footer-contact-pills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .footer-pill {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            color: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        footer .footer-links { margin-top: 16px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+        footer .footer-links button { 
+            background: transparent;
+            color: #fde047; 
+            font-size: 13px; 
+            font-weight: 700; 
+            padding: 4px 8px;
+        }
+        footer .footer-links button:hover { text-decoration: underline; }
+
+        /* --- FLOATING WHATSAPP BUTTON --- */
+        .float-wa {
+            position: fixed; bottom: 20px; right: 20px; z-index: 950;
+            background: var(--green); color: white; 
+            width: 56px; height: 56px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            box-shadow: 0 4px 18px rgba(37, 211, 102, 0.45);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* --- INTERACTIVE MODAL (Fixes all broken external links) --- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.72);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-box {
+            background: #ffffff;
+            width: 100%;
+            max-width: 520px;
+            max-height: 88vh;
+            border-radius: 22px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+            transform: scale(0.94);
+            transition: transform 0.25s ease;
+        }
+        .modal-overlay.active .modal-box {
+            transform: scale(1);
+        }
+        .modal-header {
+            background: linear-gradient(135deg, var(--header-blue), var(--header-blue-light));
+            color: #ffffff;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .modal-header h3 {
+            font-size: 17px;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+        .modal-close {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.35);
+        }
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            font-size: 14px;
+            color: #334155;
+        }
+        .modal-body p {
+            margin-bottom: 12px;
+        }
+        .modal-list-title {
+            font-weight: 800;
+            color: var(--header-blue);
+            margin: 14px 0 8px;
+            font-size: 14px;
+        }
+        .modal-list {
+            list-style: none;
+            margin-bottom: 16px;
+        }
+        .modal-list li {
+            padding: 7px 10px;
+            background: #f8fafc;
+            border-left: 3px solid var(--gold);
+            border-radius: 6px;
+            margin-bottom: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        .modal-footer {
+            padding: 14px 20px;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 10px;
+        }
+        .modal-footer a {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 13px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        /* --- CUSTOM TOAST NOTIFICATION (Replaces alert) --- */
+        .toast-msg {
+            position: fixed;
+            bottom: 85px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: #1e293b;
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+            z-index: 3000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        .toast-msg.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* --- DESKTOP RESPONSIVE --- */
+        @media (min-width: 768px) {
+            .hero h1 { font-size: 46px; }
+            .hero p { font-size: 16px; max-width: 620px; }
+            .hero-btns { flex-direction: row; justify-content: center; max-width: 100%; }
+            .btn { padding: 14px 30px; }
+            
+            .services-grid { 
+                grid-template-columns: repeat(3, 1fr); 
+                gap: 20px; 
+                max-width: 900px; 
+                margin: 0 auto 50px; 
+                padding: 0 20px;
+            }
+            .service-card { min-height: 165px; padding: 22px 16px; }
+            .service-icon { font-size: 30px; width: 54px; height: 54px; }
+            .service-card h3 { font-size: 15px; }
+            .service-tap-hint { font-size: 11px; }
+            
+            .blog-container { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 20px; 
+                max-width: 900px; 
+                margin: 0 auto 55px; 
+                padding: 0 20px;
+            }
+            .blog-card { min-height: 225px; padding: 20px; }
+            .blog-img { height: 80px; font-size: 30px; }
+            .blog-content h4 { font-size: 15px; }
+            .blog-content p { font-size: 12px; }
+            .read-more { font-size: 13px; }
+
+            .inquiry-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .inquiry-full {
+                grid-column: span 2;
+            }
+            
+            .stats-container { max-width: 750px; margin: -28px auto 35px; padding: 22px 15px; }
+            .stat-item h3 { font-size: 26px; }
+            .stat-item p { font-size: 11px; }
+            .section-header h2 { font-size: 32px; }
+            .logo-text h2 { font-size: 18px; }
+            .logo-text span { font-size: 11px; }
+            footer { padding-bottom: 40px; }
+        }
+
+        /* --- VERY SMALL SCREENS (< 380px) --- */
+        @media (max-width: 380px) {
+            .logo-text h2 { font-size: 13px; }
+            .header-call { padding: 7px 12px; font-size: 12px; }
+            .service-card h3 { font-size: 10px; }
+            .service-icon { font-size: 20px; width: 38px; height: 38px; }
+            .blog-content h4 { font-size: 11px; }
+            .blog-content p { font-size: 9px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER (Sticky Blue Header with Crisp CA Monogram Icon) -->
+    <header>
+        <a href="#" class="logo">
+            <div class="logo-icon" aria-label="CA Logo">
+                <span class="logo-icon-ca">CA</span>
+                <div class="logo-icon-bars" aria-hidden="true">
+                    <span style="height: 4px;"></span>
+                    <span style="height: 7px;"></span>
+                    <span style="height: 5px;"></span>
+                </div>
+            </div>
+            <div class="logo-text">
+                <h2>JAIN ACCOUNTING</h2>
+                <span>Bijoliya, Rajasthan</span>
+            </div>
+        </a>
+        <div class="header-actions">
+            <a href="tel:+917737740207" class="header-call">📞 Call Now</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero fade-up">
+        <div class="hero-badge">⭐ Trusted <span class="highlight-yellow">CA</span> & Tax Consultant in <span class="highlight-pink">Bijoliya</span></div>
+        <h1>Your Trusted <span class="highlight-gold">CA</span> & <span class="highlight-pink">Financial</span> Partner</h1>
+        <p>Complete Accounting, <span class="highlight-yellow">GST</span>, <span class="highlight-pink">ITR</span>, <span class="highlight-blue">Loans</span> & E-Mitra Services in Bijoliya. One-stop reliable solution for all your business, taxation & digital needs.</p>
+        
+        <div class="hero-btns">
+            <a href="tel:+917737740207" class="btn btn-call">📞 Call: +91 7737740207</a>
+            <a href="https://wa.me/917737740207?text=Hello%20Jain%20CA%20Accounting,%20I%20need%20consultation%20regarding%20accounting/tax%20services." target="_blank" rel="noopener" class="btn btn-wa">💬 WhatsApp Us</a>
+        </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <div class="stats-container fade-up">
+        <div class="stat-item">
+            <h3>10+</h3>
+            <p>Years Exp.</p>
+        </div>
+        <div class="stat-item">
+            <h3>500+</h3>
+            <p>Happy Clients</p>
+        </div>
+        <div class="stat-item">
+            <h3>100%</h3>
+            <p>Data Privacy</p>
+        </div>
+        <div class="stat-item">
+            <h3>24/7</h3>
+            <p>Fast Support</p>
+        </div>
+    </div>
+
+    <!-- SERVICES SECTION (3 Columns with Interactive Detail Modals) -->
+    <div class="section-header fade-up" id="services">
+        <h2>Our <span class="highlight-yellow">CA</span> & Digital Services</h2>
+        <p>पूरी जानकारी और आवश्यक दस्तावेज़ (Documents) देखने के लिए किसी भी सर्विस पर क्लिक करें</p>
+        <div class="line"></div>
+    </div>
+    <div class="services-grid">
+        <button type="button" class="service-card fade-up" onclick="openServiceModal('gst')">
+            <div class="service-icon">🧾</div>
+            <h3><span class="highlight-yellow">GST</span> Registration & Returns (CA)</h3>
+            <span class="service-tap-hint">Details देखें →</span>
+        </button>
+        <button type="button" class="service-card fade-up" onclick="openServiceModal('itr')">
+            <div class="service-icon">💰</div>
+            <h3>Income Tax Return (<span class="highlight-pink">ITR</span>) - CA</h3>
+            <span class="service-tap-hint">Details देखें →</span>
+        </button>
+        <button type="button" class="service-card fade-up" onclick="openServiceModal('loan')">
+            <div class="service-icon">🏠</div>
+            <h3>Home & Business <span class="highlight-blue">Loans</span></h3>
+            <span class="service-tap-hint">Details देखें →</span>
+        </button>
+        <button type="button" class="service-card fade-up" onclick="openServiceModal('emitra')">
+            <div class="service-icon">💻</div>
+            <h3>E-Mitra & Online Forms</h3>
+            <span class="service-tap-hint">Details देखें →</span>
+        </button>
+        <button type="button" class="service-card fade-up" onclick="openServiceModal('company')">
+            <div class="service-icon">🏢</div>
+            <h3>Company / MSME Reg. (<span class="highlight-yellow">CA</span>)</h3>
+            <span class="service-tap-hint">Details देखें →</span>
+        </button>
+        <button type="button" class="service-card fade-up" onclick="openServiceModal('electricity')">
+            <div class="service-icon">⚡</div>
+            <h3>Electricity Dept. Works</h3>
+            <span class="service-tap-hint">Details देखें →</span>
+        </button>
+    </div>
+
+    <!-- LATEST BLOGS SECTION (2 Columns with Full Article Popups) -->
+    <div class="section-header fade-up" id="blogs">
+        <h2>Latest <span class="highlight-yellow">CA</span> Updates & Blogs</h2>
+        <p>टैक्स, लोन और सरकारी योजनाओं की ताज़ा जानकारी पढ़ें</p>
+        <div class="line"></div>
+    </div>
+    <div class="blog-container">
+        
+        <!-- Blog 1 -->
+        <button type="button" class="blog-card fade-up" onclick="openBlogModal('gst-dates')">
+            <div class="blog-img">📰</div>
+            <div class="blog-content">
+                <div>
+                    <span class="blog-tag">GST Update (CA)</span>
+                    <h4><span class="highlight-yellow">GST</span> रिटर्न फाइल करने की नई तारीखें (2026)</h4>
+                    <p>जानें कि इस साल <span class="highlight-yellow">GST</span> रिटर्न भरने की लास्ट डेट क्या है और लेट फीस से कैसे बचें।</p>
+                </div>
+                <span class="read-more">पूरा लेख पढ़ें →</span>
+            </div>
+        </button>
+
+        <!-- Blog 2 -->
+        <button type="button" class="blog-card fade-up" onclick="openBlogModal('itr-benefits')">
+            <div class="blog-img">📊</div>
+            <div class="blog-content">
+                <div>
+                    <span class="blog-tag">Income Tax (CA)</span>
+                    <h4><span class="highlight-pink">ITR</span> फाइल करने के 5 बड़े फायदे</h4>
+                    <p>क्या आप जानते हैं कि <span class="highlight-pink">ITR</span> फाइल करने से आपको लोन और वीजा में कैसे मदद मिलती है?</p>
+                </div>
+                <span class="read-more">पूरा लेख पढ़ें →</span>
+            </div>
+        </button>
+
+        <!-- Blog 3 -->
+        <button type="button" class="blog-card fade-up" onclick="openBlogModal('mudra-loan')">
+            <div class="blog-img">🏦</div>
+            <div class="blog-content">
+                <div>
+                    <span class="blog-tag">Loan Scheme</span>
+                    <h4><span class="highlight-blue">Mudra Loan</span> (मुद्रा लोन) कैसे लें?</h4>
+                    <p>छोटे बिजनेस के लिए सरकारी सब्सिडी वाला लोन पाने का पूरा तरीका।</p>
+                </div>
+                <span class="read-more">पूरा लेख पढ़ें →</span>
+            </div>
+        </button>
+
+        <!-- Blog 4 -->
+        <button type="button" class="blog-card fade-up" onclick="openBlogModal('msme-reg')">
+            <div class="blog-img">🏢</div>
+            <div class="blog-content">
+                <div>
+                    <span class="blog-tag">Business (CA)</span>
+                    <h4><span class="highlight-yellow">MSME</span> रजिस्ट्रेशन के फायदे</h4>
+                    <p>छोटे कारोबारियों के लिए सरकारी योजनाओं का लाभ उठाने का सबसे आसान तरीका।</p>
+                </div>
+                <span class="read-more">पूरा लेख पढ़ें →</span>
+            </div>
+        </button>
+
+    </div>
+
+    <!-- QUICK CONSULTATION FORM SECTION -->
+    <section class="inquiry-section fade-up" id="contact">
+        <div class="section-header" style="margin-top: 10px;">
+            <h2>Free <span class="highlight-pink">Consultation</span> & Inquiry</h2>
+            <p>अपनी जानकारी भरें और सीधे WhatsApp पर तुरंत सहायता प्राप्त करें</p>
+            <div class="line"></div>
+        </div>
+        <div class="inquiry-card">
+            <form id="waInquiryForm" onsubmit="sendWhatsAppInquiry(event)">
+                <div class="inquiry-grid">
+                    <div class="form-group">
+                        <label for="clientName">आपका नाम (Your Name) *</label>
+                        <input type="text" id="clientName" class="form-control" placeholder="उदा. राजेश जैन" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="clientPhone">मोबाइल नंबर (Mobile Number) *</label>
+                        <input type="tel" id="clientPhone" class="form-control" placeholder="उदा. 98290XXXXX" required>
+                    </div>
+                    <div class="form-group inquiry-full">
+                        <label for="serviceType">सेवा चुनें (Select Service) *</label>
+                        <select id="serviceType" class="form-control" required>
+                            <option value="GST Registration & Return Filing">GST Registration & Return Filing</option>
+                            <option value="Income Tax Return (ITR)">Income Tax Return (ITR)</option>
+                            <option value="Home / Business / Mudra Loan">Home / Business / Mudra Loan</option>
+                            <option value="Accounting & Book-Keeping">Accounting & Book-Keeping</option>
+                            <option value="Company / MSME Udyam Registration">Company / MSME Udyam Registration</option>
+                            <option value="E-Mitra & Online Services">E-Mitra & Online Services</option>
+                            <option value="Electricity Department Works">Electricity Department Works</option>
+                            <option value="Other Inquiry">Other Financial / Tax Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group inquiry-full">
+                        <label for="clientMsg">संदेश / विवरण (Message - Optional)</label>
+                        <textarea id="clientMsg" rows="3" class="form-control" placeholder="अपनी जरूरत के बारे में संक्षेप में लिखें..."></textarea>
+                    </div>
+                    <div class="inquiry-full">
+                        <button type="submit" class="btn-submit-wa">
+                            💬 Send Inquiry on WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- SOCIAL LINKS SECTION (Clean SVG Icons) -->
+    <div class="social-section fade-up">
+        <h3>Connect With Us</h3>
+        <p>बिजोलिया में सभी टैक्स और वित्तीय अपडेट्स के लिए हमसे जुड़ें</p>
+        <div class="social-links">
+            <a href="https://facebook.com" class="fb" target="_blank" rel="noopener" title="Facebook" aria-label="Facebook">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://wa.me/917737740207" class="wa" target="_blank" rel="noopener" title="WhatsApp" aria-label="WhatsApp">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+            <a href="https://instagram.com" class="insta" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="https://youtube.com" class="yt" target="_blank" rel="noopener" title="YouTube" aria-label="YouTube">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33zM9.75 15.02V8.48L15.5 11.75l-5.75 3.27z"/></svg>
+            </a>
+            <a href="https://linkedin.com" class="linkedin" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <h3>Jain <span class="highlight-yellow">CA</span> Accounting & Book-Keeping</h3>
+        <p>Your Trusted <span class="highlight-yellow">CA</span>, Financial, Loan & Digital Services Partner</p>
+        
+        <div class="footer-contact-pills">
+            <a href="tel:+917737740207" class="footer-pill">📞 +91 7737740207</a>
+            <a href="mailto:ravijain236129@gmail.com" class="footer-pill">✉️ ravijain236129@gmail.com</a>
+            <span class="footer-pill">📍 Bijoliya, Dist. Bhilwara, Rajasthan</span>
+        </div>
+        
+        <div class="footer-links">
+            <button type="button" onclick="openServiceModal('gst')">GST Services</button>
+            <button type="button" onclick="openServiceModal('itr')">ITR Filing</button>
+            <button type="button" onclick="openServiceModal('loan')">Loans</button>
+            <button type="button" onclick="openServiceModal('emitra')">E-Mitra</button>
+            <button type="button" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Us</button>
+        </div>
+        <p style="margin-top: 22px; font-size: 11px; color: #94a3b8;">© 2026 Jain CA Accounting & Book-Keeping, Bijoliya. All Rights Reserved.</p>
+    </footer>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/917737740207?text=Hello%20Jain%20CA%20Accounting,%20I%20have%20a%20query." class="float-wa" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+    </a>
+
+    <!-- MODAL POPUP FOR SERVICES & BLOGS -->
+    <div class="modal-overlay" id="infoModal" onclick="closeModalOnBackdrop(event)">
+        <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <div class="modal-header">
+                <h3 id="modalTitle">Service Details</h3>
+                <button type="button" class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+            </div>
+            <div class="modal-body" id="modalContent">
+                <!-- Dynamic Content Injected Here -->
+            </div>
+            <div class="modal-footer">
+                <a href="tel:+917737740207" style="background: var(--gold); color: var(--header-blue);">📞 Call Expert</a>
+                <a id="modalWaBtn" href="https://wa.me/917737740207" target="_blank" rel="noopener" style="background: var(--green); color: #ffffff;">💬 WhatsApp Now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST MESSAGE -->
+    <div class="toast-msg" id="toastMsg">Redirecting to WhatsApp...</div>
+
+    <!-- JAVASCRIPT FOR ANIMATIONS, MODALS & WHATSAPP FORM -->
+    <script>
+        // 1. Scroll Reveal Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // 2. Service Details Data (Eliminates 404 dead links)
+        const servicesData = {
+            gst: {
+                title: "🧾 GST Registration & Monthly/Quarterly Returns",
+                desc: "नए व्यापार के लिए नया GST रजिस्ट्रेशन, नियमित GSTR-1, GSTR-3B रिटर्न फाइलिंग, GST संशोधन (Amendment), और वार्षिक रिटर्न (GSTR-9) की संपूर्ण सुविधा।",
+                listTitle: "आवश्यक दस्तावेज़ (Required Documents):",
+                items: [
+                    "आवेदक का आधार कार्ड और पैन कार्ड (Aadhaar & PAN Card)",
+                    "पासपोर्ट साइज फोटो (Passport Size Photo)",
+                    "व्यापार स्थल का बिजली बिल / किरायानामा (Electricity Bill / Rent Agreement)",
+                    "बैंक पासबुक या कैंसिल चेक (Bank Passbook / Cancelled Cheque)"
+                ],
+                waText: "Hello Jain CA Accounting, I need help with GST Registration / Return Filing."
+            },
+            itr: {
+                title: "💰 Income Tax Return (ITR) & Accounting",
+                desc: "नौकरीपेशा (Salaried), व्यापारियों (Business), और प्रोफेशनल्स के लिए सटीक इनकम टैक्स रिटर्न फाइलिंग, TDS रिफंड क्लेम, बैलेंस शीट और प्रॉफिट एंड लॉस अकाउंट तैयार करना।",
+                listTitle: "आवश्यक दस्तावेज़ (Required Documents):",
+                items: [
+                    "पैन कार्ड और आधार कार्ड (PAN & Aadhaar)",
+                    "सभी बैंक खातों का वार्षिक स्टेटमेंट (Bank Statements)",
+                    "Form-16 / सैलरी स्लिप (नौकरीपेशा व्यक्तियों के लिए)",
+                    "निवेश और बीमा (LIC, PPF, Home Loan) की रसीदें"
+                ],
+                waText: "Hello Jain CA Accounting, I want to file my Income Tax Return (ITR)."
+            },
+            loan: {
+                title: "🏠 Home, Business, Mudra & Vehicle Loans",
+                desc: "बिजोलिया और आसपास के क्षेत्र में सभी प्रमुख बैंकों से होम लोन, बिजनेस लोन, प्रधानमंत्री मुद्रा लोन, पर्सनल लोन और प्रोजेक्ट रिपोर्ट (CMA Data) तैयार करने की सुविधा।",
+                listTitle: "आवश्यक दस्तावेज़ (Required Documents):",
+                items: [
+                    "आधार कार्ड, पैन कार्ड और फोटो (KYC Documents)",
+                    "पिछले 2-3 वर्षों का ITR और बैंक स्टेटमेंट",
+                    "बिजनेस रजिस्ट्रेशन प्रूफ / शॉप एक्ट / GST सर्टिफिकेट",
+                    "प्रॉपर्टी के कागजात (होम लोन या मॉर्गेज लोन हेतु)"
+                ],
+                waText: "Hello Jain CA Accounting, I want to inquire about Loan services."
+            },
+            emitra: {
+                title: "💻 E-Mitra & All Digital Online Services",
+                desc: "सभी सरकारी और गैर-सरकारी ऑनलाइन फॉर्म, मूल निवास, जाति प्रमाण पत्र, जनाधार अपडेट, राशन कार्ड, पैन कार्ड आवेदन, और डिजिटल सेवाएं एक ही छत के नीचे।",
+                listTitle: "प्रमुख ई-मित्र सेवाएं:",
+                items: [
+                    "नया पैन कार्ड (New PAN Card) और सुधार (Correction)",
+                    "जाति प्रमाण पत्र, मूल निवास और EWS प्रमाण पत्र",
+                    "जनाधार कार्ड (Jan Aadhaar) में नाम जोड़ना व सुधार",
+                    "पेंशन सत्यापन, छात्रवृत्ति और सरकारी नौकरी फॉर्म"
+                ],
+                waText: "Hello Jain CA Accounting, I need E-Mitra / Online form services."
+            },
+            company: {
+                title: "🏢 Company, Partnership Firm & MSME Registration",
+                desc: "अपने व्यापार को कानूनी पहचान दिलाएं। प्राइवेट लिमिटेड कंपनी, पार्टनरशिप फर्म, फूड लाइसेंस (FSSAI), और MSME उद्यम रजिस्ट्रेशन की त्वरित सेवा।",
+                listTitle: "आवश्यक दस्तावेज़ (Required Documents):",
+                items: [
+                    "सभी डायरेक्टर्स / पार्टनर्स के आधार व पैन कार्ड",
+                    "फर्म का नाम और व्यापार की प्रकृति का विवरण",
+                    "ऑफिस/दुकान के पते का प्रमाण (बिजली बिल / NOC)",
+                    "बैंक खाता विवरण और मोबाइल नंबर"
+                ],
+                waText: "Hello Jain CA Accounting, I want to register my Business / MSME / Company."
+            },
+            electricity: {
+                title: "⚡ Electricity Department (AVVNL) Works",
+                desc: "बिजली विभाग से संबंधित सभी कार्यों जैसे नया घरेलू व कमर्शियल कनेक्शन, नाम परिवर्तन, लोड बढ़वाना/घटवाना, और बिल सुधार हेतु संपूर्ण ऑनलाइन सहायता।",
+                listTitle: "उपलब्ध सेवाएं एवं दस्तावेज़:",
+                items: [
+                    "नया बिजली कनेक्शन आवेदन (Domestic & Commercial)",
+                    "बिजली बिल में नाम ट्रांसफर (Name Change)",
+                    "स्वीकृत भार (Load Extension / Reduction) आवेदन",
+                    "आवश्यक दस्तावेज़: आधार कार्ड, रजिस्ट्री/पट्टा और पुराना बिल"
+                ],
+                waText: "Hello Jain CA Accounting, I need help with Electricity Department work."
+            }
+        };
+
+        // 3. Full Blog Articles Data (Eliminates 404 dead links)
+        const blogsData = {
+            'gst-dates': {
+                title: "📰 GST रिटर्न फाइल करने की महत्वपूर्ण तारीखें (2026)",
+                content: `
+                    <p><strong>समय पर GST रिटर्न भरना क्यों ज़रूरी है?</strong><br>
+                    यदि आप एक पंजीकृत व्यापारी हैं, तो समय पर अपना GST रिटर्न दाखिल करना अनिवार्य है। देरी करने पर प्रतिदिन ₹50 (या निल रिटर्न पर ₹20) की लेट फीस और 18% वार्षिक ब्याज लगता है।</p>
+                    <div class="modal-list-title">प्रमुख मासिक एवं त्रैमासिक तारीखें:</div>
+                    <ul class="modal-list">
+                        <li><strong>GSTR-1 (मासिक):</strong> हर महीने की 11 तारीख तक बिक्री का विवरण।</li>
+                        <li><strong>GSTR-3B (मासिक):</strong> हर महीने की 20 तारीख तक टैक्स भुगतान व रिटर्न।</li>
+                        <li><strong>QRMP स्कीम (त्रैमासिक):</strong> तिमाही समाप्त होने के बाद 13 और 22/24 तारीख।</li>
+                        <li><strong>GSTR-9 (वार्षिक रिटर्न):</strong> वित्तीय वर्ष समाप्त होने के बाद 31 दिसंबर तक।</li>
+                    </ul>
+                    <p>बिना किसी टेंशन और पेनल्टी से बचने के लिए आज ही <strong>Jain CA Accounting, Bijoliya</strong> से अपना GST अकाउंट मैनेज करवाएं।</p>
+                `,
+                waText: "Hello Jain CA Accounting, I read your GST blog and need assistance with GST filing."
+            },
+            'itr-benefits': {
+                title: "📊 Income Tax Return (ITR) फाइल करने के 5 बड़े फायदे",
+                content: `
+                    <p>बहुत से लोग सोचते हैं कि यदि उनकी आय टैक्स स्लैब से कम है तो उन्हें ITR भरने की ज़रूरत नहीं है, लेकिन ITR फाइल करना आपकी वित्तीय पहचान का सबसे बड़ा प्रमाण है।</p>
+                    <div class="modal-list-title">ITR फाइलिंग के 5 मुख्य लाभ:</div>
+                    <ul class="modal-list">
+                        <li><strong>1. आसान बैंक लोन:</strong> होम लोन, कार लोन या बिजनेस लोन के लिए बैंक पिछले 3 साल का ITR मांगते हैं।</li>
+                        <li><strong>2. TDS रिफंड क्लेम:</strong> बैंक FD या अन्य पेमेंट पर कटे हुए TDS को वापस पाने के लिए ITR ज़रूरी है।</li>
+                        <li><strong>3. आय का वैध प्रमाण:</strong> सरकारी टेंडर, बड़े कॉन्ट्रैक्ट और बीमा पॉलिसी के लिए ITR मान्य है।</li>
+                        <li><strong>4. वीजा प्रोसेसिंग:</strong> विदेश यात्रा (Visa) के लिए एम्बेसी द्वारा ITR की कॉपी मांगी जाती है।</li>
+                        <li><strong>5. घाटे को आगे ले जाना (Carry Forward):</strong> व्यापार में हुए नुकसान को अगले वर्षों के मुनाफे से एडजस्ट करने हेतु।</li>
+                    </ul>
+                `,
+                waText: "Hello Jain CA Accounting, I want to file my ITR after reading your article."
+            },
+            'mudra-loan': {
+                title: "🏦 प्रधानमंत्री मुद्रा लोन (Mudra Loan) कैसे लें?",
+                content: `
+                    <p>छोटे व्यापारियों, दुकानदारों और नए स्टार्टअप्स को बिना किसी गारंटी (Collateral-Free) के व्यापार बढ़ाने के लिए सरकार द्वारा <strong>प्रधानमंत्री मुद्रा योजना (PMMY)</strong> चलाई जा रही है।</p>
+                    <div class="modal-list-title">मुद्रा लोन की 3 श्रेणियां:</div>
+                    <ul class="modal-list">
+                        <li><strong>शिशु लोन (Shishu):</strong> नया व्यापार शुरू करने के लिए ₹50,000 तक का लोन।</li>
+                        <li><strong>किशोर लोन (Kishore):</strong> व्यापार विस्तार के लिए ₹50,000 से ₹5 लाख तक का लोन।</li>
+                        <li><strong>तरुण लोन (Tarun):</strong> स्थापित व्यापार के लिए ₹5 लाख से ₹10 लाख तक का लोन।</li>
+                    </ul>
+                    <p>मुद्रा लोन के लिए सही <strong>प्रोजेक्ट रिपोर्ट (Project Report)</strong> और बैंक फाइल तैयार करवाने के लिए हमारे ऑफिस विजिट करें।</p>
+                `,
+                waText: "Hello Jain CA Accounting, I want to apply for Mudra Loan and need Project Report help."
+            },
+            'msme-reg': {
+                title: "🏢 MSME (उद्यम) रजिस्ट्रेशन के मुख्य फायदे",
+                content: `
+                    <p>सूक्ष्म, लघु और मध्यम उद्यम (MSME / Udyam Registration) भारत सरकार की एक निशुल्क और अत्यंत लाभकारी योजना है जो हर छोटे-बड़े व्यापारी के लिए आवश्यक है।</p>
+                    <div class="modal-list-title">MSME सर्टिफिकेट के प्रमुख लाभ:</div>
+                    <ul class="modal-list">
+                        <li><strong>सस्ती ब्याज दरों पर लोन:</strong> बैंकों से कम ब्याज पर बिजनेस लोन और सब्सिडी का लाभ।</li>
+                        <li><strong>पेमेंट सुरक्षा कानून:</strong> खरीदार द्वारा 45 दिनों के भीतर पेमेंट न करने पर ब्याज सहित वसूली का अधिकार।</li>
+                        <li><strong>सरकारी टेंडर में छूट:</strong> टेंडर फीस और EMD (Security Deposit) में विशेष छूट।</li>
+                        <li><strong>बिजली बिल व ISO सर्टिफिकेशन में सब्सिडी:</strong> सरकारी योजनाओं का सीधा लाभ।</li>
+                    </ul>
+                `,
+                waText: "Hello Jain CA Accounting, I want to get MSME Udyam Registration done."
+            }
+        };
+
+        const modal = document.getElementById('infoModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+        const modalWaBtn = document.getElementById('modalWaBtn');
+
+        function openServiceModal(key) {
+            const data = servicesData[key];
+            if (!data) return;
+
+            modalTitle.textContent = data.title;
+            const listItemsHtml = data.items.map(item => `<li>✓ ${item}</li>`).join('');
+            modalContent.innerHTML = `
+                <p>${data.desc}</p>
+                <div class="modal-list-title">${data.listTitle}</div>
+                <ul class="modal-list">${listItemsHtml}</ul>
+                <p style="font-size: 12px; color: #64748b; background: #eff6ff; padding: 10px; border-radius: 8px;">
+                    📍 <strong>ऑफिस पता:</strong> जैन CA अकाउंटिंग एंड बुक-कीपिंग, बिजोलिया (राजस्थान)
+                </p>
+            `;
+            modalWaBtn.href = `https://wa.me/917737740207?text=${encodeURIComponent(data.waText)}`;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openBlogModal(key) {
+            const blog = blogsData[key];
+            if (!blog) return;
+
+            modalTitle.textContent = blog.title;
+            modalContent.innerHTML = blog.content;
+            modalWaBtn.href = `https://wa.me/917737740207?text=${encodeURIComponent(blog.waText)}`;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function closeModalOnBackdrop(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // 4. WhatsApp Consultation Form Submission
+        function showToast(text) {
+            const toast = document.getElementById('toastMsg');
+            toast.textContent = text;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        function sendWhatsAppInquiry(event) {
+            event.preventDefault();
+            const name = document.getElementById('clientName').value.trim();
+            const phone = document.getElementById('clientPhone').value.trim();
+            const service = document.getElementById('serviceType').value;
+            const msg = document.getElementById('clientMsg').value.trim();
+
+            if (!name || !phone) {
+                showToast("कृपया नाम और मोबाइल नंबर भरें।");
+                return;
+            }
+
+            let whatsappMessage = `*New Inquiry - Jain CA Accounting*\n\n`;
+            whatsappMessage += `👤 *Name:* ${name}\n`;
+            whatsappMessage += `📞 *Mobile:* ${phone}\n`;
+            whatsappMessage += `💼 *Service:* ${service}\n`;
+            if (msg) {
+                whatsappMessage += `📝 *Details:* ${msg}\n`;
+            }
+
+            const waUrl = `https://wa.me/917737740207?text=${encodeURIComponent(whatsappMessage)}`;
+            showToast("WhatsApp पर भेजा जा रहा है...");
+            
+            setTimeout(() => {
+                window.open(waUrl, '_blank', 'noopener');
+            }, 400);
+        }
+    </script>
+
+</body>
+</html>
